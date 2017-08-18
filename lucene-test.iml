@@ -64,7 +64,7 @@
     <orderEntry type="module-library">
       <library>
         <CLASSES>
-          <root url="jar://$USER_HOME$/Downloads/poi-bin-3.16-20170419/poi-3.16/poi-3.16.jar!/" />
+          <root url="jar://$USER_HOME$/Downloads/JAR包/pdfbox-2.0.7.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
@@ -73,7 +73,7 @@
     <orderEntry type="module-library">
       <library>
         <CLASSES>
-          <root url="jar://$USER_HOME$/Downloads/poi-bin-3.16-20170419/poi-3.16/poi-ooxml-3.16.jar!/" />
+          <root url="jar://$USER_HOME$/Downloads/JAR包/poi-bin-3.16-20170419/poi-3.16/poi-3.16.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
@@ -82,7 +82,7 @@
     <orderEntry type="module-library">
       <library>
         <CLASSES>
-          <root url="jar://$USER_HOME$/Downloads/poi-bin-3.16-20170419/poi-3.16/ooxml-lib/xmlbeans-2.6.0.jar!/" />
+          <root url="jar://$USER_HOME$/Downloads/JAR包/poi-bin-3.16-20170419/poi-3.16/poi-ooxml-schemas-3.16.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
@@ -91,7 +91,7 @@
     <orderEntry type="module-library">
       <library>
         <CLASSES>
-          <root url="jar://$USER_HOME$/Downloads/poi-bin-3.16-20170419/poi-3.16/poi-ooxml-schemas-3.16.jar!/" />
+          <root url="jar://$USER_HOME$/Downloads/JAR包/poi-bin-3.16-20170419/poi-3.16/poi-ooxml-3.16.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
@@ -100,7 +100,7 @@
     <orderEntry type="module-library">
       <library>
         <CLASSES>
-          <root url="jar://$USER_HOME$/Downloads/poi-bin-3.16-20170419/poi-3.16/poi-excelant-3.16.jar!/" />
+          <root url="jar://$USER_HOME$/Downloads/JAR包/poi-bin-3.16-20170419/poi-3.16/poi-scratchpad-3.16.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
@@ -109,7 +109,34 @@
     <orderEntry type="module-library">
       <library>
         <CLASSES>
-          <root url="jar://$USER_HOME$/Downloads/poi-bin-3.16-20170419/poi-3.16/poi-scratchpad-3.16.jar!/" />
+          <root url="jar://$USER_HOME$/Downloads/JAR包/poi-bin-3.16-20170419/poi-3.16/poi-excelant-3.16.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library>
+        <CLASSES>
+          <root url="jar://$USER_HOME$/Downloads/JAR包/poi-bin-3.16-20170419/poi-3.16/poi-examples-3.16.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library>
+        <CLASSES>
+          <root url="jar://$USER_HOME$/Downloads/JAR包/poi-bin-3.16-20170419/poi-3.16/ooxml-lib/xmlbeans-2.6.0.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library>
+        <CLASSES>
+          <root url="jar://$USER_HOME$/Downloads/JAR包/IKA/IKAnalyzer2012_u6/IKAnalyzer2012_u6.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />

@@ -4,6 +4,8 @@ package com.company;
  * Created by neal1 on 2017/8/17.
  */
 
+import org.apache.pdfbox.pdmodel.PDDocument;
+import org.apache.pdfbox.text.PDFTextStripper;
 import org.apache.poi.POIXMLDocument;
 import org.apache.poi.POIXMLTextExtractor;
 import org.apache.poi.hssf.usermodel.HSSFCell;
@@ -18,10 +20,9 @@ import org.apache.poi.xssf.usermodel.XSSFCell;
 import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
-import org.apache.poi.h
 import org.apache.poi.xwpf.extractor.XWPFWordExtractor;
+import org.apache.xmlbeans.XmlException;
 
-import javax.management.modelmbean.XMLParseException;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -115,7 +116,7 @@ public class FileUtil {
         return content.toString();
     }
 
-    public static String readDoc (File file) throws IOException, XMLParseException, OpenXML4JException {
+    public static String readDoc (File file) throws IOException, XmlException, OpenXML4JException {
         String filePath = file.getAbsolutePath();
         if (filePath.endsWith(".doc")) {
             InputStream is = new FileInputStream(file);
@@ -131,6 +132,14 @@ public class FileUtil {
             extractor.close();
             return text2007;
         }
+    }
+
+    public static String readPdf(File file) throws IOException {
+        PDDocument doc = PDDocument.load(file.getAbsolutePath());
+        PDFTextStripper stripper = new PDFTextStripper();
+        String content = stripper.getText(doc);
+        doc.close();
+        return content;
     }
 
 }
