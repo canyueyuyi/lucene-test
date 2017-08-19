@@ -1,4 +1,4 @@
-package com.company;
+package com.company.bean;
 
 /**
  * Created by neal1 on 2017/8/17.

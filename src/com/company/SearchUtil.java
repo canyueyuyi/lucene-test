@@ -99,10 +99,20 @@ public class SearchUtil {
     }
 
     public static Query getMultiQueryLikeSqlAnd(Query ... querys){
-        BooleanQuery query = new BooleanQuery();
+        BooleanQuery.Builder builder = new BooleanQuery.Builder();
         for (Query subQuery : querys) {
-            query.add(subQuery, Occur.MUST);
+            builder.add(subQuery, Occur.MUST);
         }
+        BooleanQuery query = builder.build();
+        return query;
+    }
+
+    public static Query getMultiQueryLikeSqlIn(Query ... queries) {
+        BooleanQuery.Builder builder = new BooleanQuery.Builder();
+        for (Query subQuery : queries) {
+            builder.add(subQuery, Occur.SHOULD);
+        }
+        BooleanQuery query = builder.build();
         return query;
     }
 
@@ -113,13 +123,6 @@ public class SearchUtil {
         return query;
     }
 
-//    public static Query getMultiQueryLikeSqlAnd(Query ... querys){
-//        BooleanQuery.Builder query = new BooleanQuery.Builder();
-//        for (Query subQuery : querys) {
-//            query.add(subQuery,BooleanClause.Occur.MUST);
-//        }
-//        return (Query) query;
-//    }
     public static Sort getSortInfo(String[] fields,Type[] types,boolean[] reverses){
         SortField[] sortFields = null;
         int fieldLength = fields.length;

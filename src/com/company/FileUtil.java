@@ -4,6 +4,7 @@ package com.company;
  * Created by neal1 on 2017/8/17.
  */
 
+import com.company.bean.FileBean;
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.text.PDFTextStripper;
 import org.apache.poi.POIXMLDocument;
@@ -135,7 +136,7 @@ public class FileUtil {
     }
 
     public static String readPdf(File file) throws IOException {
-        PDDocument doc = PDDocument.load(file.getAbsolutePath());
+        PDDocument doc = PDDocument.load(file);
         PDFTextStripper stripper = new PDFTextStripper();
         String content = stripper.getText(doc);
         doc.close();
