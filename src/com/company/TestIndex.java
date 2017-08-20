@@ -3,35 +3,34 @@ package com.company;
 /**
  * Created by neal1 on 2017/8/19.
  */
+
+import com.company.bean.FileBean;
+import com.company.index.FileBeanIndex;
+
 import java.util.List;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-import com.company.bean.FileBean;
-
-import com.lucene.bean.FileBean;
-import com.lucene.index.FileBeanIndex;
-import com.lucene.index.util.FileUtil;
 
 public class TestIndex {
     public static void main(String[] args) {
         try {
-            List<FileBean> fileBeans = FileUtil.getFolderFiles("C:\\Users\\lenovo\\Desktop\\lucene\\lucene-5.1.0");
+            List<FileBean> fileBeans = FileUtil.getFolderFiles("C:\\Users\\neal1\\Desktop");
             int totalCount = fileBeans.size();
             int perThreadCount = 3000;
-            System.out.println("查询到的数据总数是"+fileBeans.size());
-            int threadCount = totalCount/perThreadCount + (totalCount%perThreadCount == 0 ? 0 : 1);
+            System.out.println("查询到的数据总数是" + fileBeans.size());
+            int threadCount = totalCount / perThreadCount + (totalCount % perThreadCount == 0 ? 0 : 1);
             ExecutorService pool = Executors.newFixedThreadPool(threadCount);
             CountDownLatch countDownLatch1 = new CountDownLatch(1);
             CountDownLatch countDownLatch2 = new CountDownLatch(threadCount);
             System.out.println(fileBeans.size());
 
             for(int i = 0; i < threadCount; i++) {
-                int start = i*perThreadCount;
-                int end = (i+1) * perThreadCount < totalCount ? (i+1) * perThreadCount : totalCount;
+                int start = i * perThreadCount;
+                int end = (i+1) * perThreadCount < totalCount ? (i + 1) * perThreadCount : totalCount;
                 List<FileBean> subList = fileBeans.subList(start, end);
-                Runnable runnable = new FileBeanIndex("index",i, countDownLatch1, countDownLatch2, subList);
+                Runnable runnable = new FileBeanIndex("index", i, countDownLatch1, countDownLatch2, subList);
                 //子线程交给线程池管理
                 pool.execute(runnable);
             }
