@@ -1,14 +1,16 @@
 package com.company;
 
 import org.apache.lucene.analysis.Analyzer;
+import org.apache.lucene.analysis.standard.StandardAnalyzer;
 import org.apache.lucene.document.Document;
 import org.apache.lucene.index.DirectoryReader;
 import org.apache.lucene.index.IndexReader;
 import org.apache.lucene.index.MultiReader;
 import org.apache.lucene.index.Term;
+import org.apache.lucene.queryparser.classic.ParseException;
+import org.apache.lucene.queryparser.classic.QueryParser;
 import org.apache.lucene.search.*;
 import org.apache.lucene.store.FSDirectory;
-import org.wltea.analyzer.lucene.IKAnalyzer;
 
 import java.io.File;
 import java.io.IOException;
@@ -16,22 +18,30 @@ import java.io.InterruptedIOException;
 import java.nio.file.Paths;
 import java.util.concurrent.ExecutorService;
 
-import static org.apache.lucene.search.BooleanClause.*;
+import static org.apache.lucene.search.BooleanClause.Occur;
 import static org.apache.lucene.search.SortField.Type;
 
 /**
  * Created by neal1 on 2017/8/18.
  */
 public class SearchUtil {
-    public static final Analyzer analyzer = new IKAnalyzer();
+//    public static final Analyzer analyzer = new IKAnalyzer();
+//    public static final Analyzer standardAnalyzer = new StandardAnalyzer();
+
     // obtain IndexSearcher Object
     public static IndexSearcher getIndexSearcher(String indexPath, ExecutorService service, boolean realtime) throws IOException, InterruptedIOException {
         // to-do the parameter realtime
-        DirectoryReader reader = DirectoryReader.open(IndexUtil.getIndexWriter(indexPath, true), realtime, true);
+        DirectoryReader reader = DirectoryReader.open(IndexUtil.getIndexWriter(indexPath, false));
         IndexSearcher searcher = new IndexSearcher(reader, service);
         if (service != null) {
             service.shutdown();
         }
+        return searcher;
+    }
+
+    public static IndexSearcher getSearcher(String indexPath) throws IOException {
+        DirectoryReader reader = DirectoryReader.open(IndexUtil.getIndexWriter(indexPath, false));
+        IndexSearcher searcher = new IndexSearcher(reader);
         return searcher;
     }
 
@@ -158,6 +168,38 @@ public class SearchUtil {
             // TODO Auto-generated catch block
         }
         return null;
+    }
+
+    public static TopDocs getHits(IndexSearcher searcher) throws IOException,ParseException {
+        Analyzer analyzer = new StandardAnalyzer();
+        QueryParser qp = new QueryParser("contents", analyzer);
+        Query query = qp.parse("silent");
+        TopDocs docs = searcher.search(query, 10);
+        return docs;
+//        Directory dir = FSDirectory.open(Paths.get(indexPath));
+//        IndexReader reader = DirectoryReader.open(dir);
+//        QueryScorer scorer = new QueryScorer(query);
+//        Formatter formatter = new SimpleHTMLFormatter();
+//        Highlighter highlighter = new Highlighter(formatter, scorer);
+//        Fragmenter fragmenter = new SimpleSpanFragmenter(scorer， 10)；
+//        highlighter.setTextFragmenter(fragmenter);
+
+//        for (int i = 0; i < docs.scoreDocs.length; i++) {
+//            int docid = docs[i].doc;
+//            Document doc = searcher.doc(docid);
+//            String title = doc.get("path");
+//            System.out.println("Path: " + title);
+//            String text = doc.get("contents");
+//            TokenStream stream = TokenSources.getAnyTokenStream(reader, docid, "contents", doc, analyzer);
+//            String[] frags = highlighter.getBestFragments(stream, text, 10);
+//
+//            for (String frag : frags) {
+//                System.out.println("====================");
+//                System.out.println(frag);
+//            }
+//        }
+//        dir.close();
+
     }
 
     public static Integer getLastIndexBeanID(IndexReader multiReader){

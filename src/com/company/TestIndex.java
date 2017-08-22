@@ -16,7 +16,7 @@ import java.util.concurrent.Executors;
 public class TestIndex {
     public static void main(String[] args) {
         try {
-            List<FileBean> fileBeans = FileUtil.getFolderFiles("C:\\Users\\neal1\\Desktop");
+            List<FileBean> fileBeans = FileUtil.getFolderFiles("C:\\Users\\neal1\\project\\lucene-test\\inputFiles");
             int totalCount = fileBeans.size();
             int perThreadCount = 3000;
             System.out.println("查询到的数据总数是" + fileBeans.size());
