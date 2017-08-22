@@ -2,7 +2,7 @@
 
 ## 常用链接
 * [项目仓库地址](https://github.com/neal1991/lucene-test)
-* [lucene官网](https://lucene.apache.org/）
+* [lucene官网](https://lucene.apache.org/)
 * [CSDN博客--lucene系列](http://blog.csdn.net/wuyinggui10000/article/details/45502445)
 
 ## 第一阶段目标 
